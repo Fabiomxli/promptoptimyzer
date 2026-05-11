@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+    --color-bg-primary: #0d0d0d;
+    --color-bg-secondary: #1a1a1a;
+    --color-bg-tertiary: #252525;
+    --color-bg-hover: #2a2a2a;
+    --color-accent-primary: #ff6b35;
+    --color-accent-secondary: #f7931e;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #b3b3b3;
+    --color-text-muted: #666666;
+    --color-border-color: #333333;
+    --color-success: #4ade80;
+    --color-warning: #fbbf24;
+    --color-error: #ef4444;
+}
+
+@layer base {
+    body {
+        @apply bg-bg-primary text-text-primary font-sans antialiased;
+        line-height: 1.6;
+        min-height: 100vh;
+    }
+
+    textarea, input[type="text"] {
+        @apply w-full bg-bg-tertiary border border-border-color rounded-lg p-4 text-text-primary font-mono text-sm transition-all duration-200 outline-none;
+    }
+
+    textarea:focus, input[type="text"]:focus {
+        @apply border-accent-primary ring-2 ring-accent-primary/20;
+    }
+
+    textarea::placeholder, input::placeholder {
+        @apply text-text-muted;
+    }
+}
+
+@layer components {
+    .header {
+        @apply bg-bg-secondary border-b border-border-color p-6 sticky top-0 z-50;
+    }
+
+    .card {
+        @apply bg-bg-secondary rounded-2xl border border-border-color overflow-hidden shadow-2xl;
+    }
+
+    .card-header {
+        @apply bg-bg-tertiary px-6 py-4 flex justify-between items-center border-b border-border-color;
+    }
+
+    .card-title-icon {
+        @apply w-8 h-8 rounded-lg flex items-center justify-center text-base;
+    }
+
+    .fx-category {
+        @apply bg-bg-tertiary rounded-xl p-4 border border-border-color;
+    }
+
+    .fx-category-header {
+        @apply flex items-center gap-2 mb-3 pb-2 border-b border-border-color;
+    }
+
+    .fx-options {
+        @apply max-h-[180px] overflow-y-auto flex flex-col gap-1.5 pr-1;
+    }
+
+    .fx-options::-webkit-scrollbar {
+        @apply w-1.5;
+    }
+
+    .fx-options::-webkit-scrollbar-track {
+        @apply bg-bg-secondary rounded-full;
+    }
+
+    .fx-options::-webkit-scrollbar-thumb {
+        @apply bg-border-color rounded-full hover:bg-text-muted transition-colors;
+    }
+
+    .char-counter {
+        @apply text-xs px-2 py-1 rounded font-bold;
+    }
+
+    .char-counter.good {
+        @apply bg-success/20 text-success;
+    }
+
+    .char-counter.warning {
+        @apply bg-warning/20 text-warning;
+    }
+
+    .char-counter.error {
+        @apply bg-error/20 text-error;
+    }
+
+    .btn {
+        @apply flex-1 p-3.5 rounded-xl text-sm font-semibold cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 border-none active:scale-[0.98];
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        @apply text-white shadow-xl shadow-accent-primary/20 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-accent-primary/30;
+    }
+
+    .btn-secondary {
+        @apply bg-bg-tertiary text-text-primary border border-border-color hover:bg-bg-hover hover:border-accent-primary;
+    }
+
+    .preview-block-content {
+        @apply bg-bg-tertiary rounded-lg p-4 font-mono text-xs leading-relaxed overflow-y-auto text-text-secondary whitespace-pre-wrap break-words;
+    }
+
+    .toast {
+        @apply fixed bottom-8 right-8 bg-bg-secondary border border-success rounded-xl px-6 py-4 flex items-center gap-3 shadow-2xl transition-all duration-300 z-[1000] translate-y-24 opacity-0;
+    }
+
+    .toast.show {
+        @apply translate-y-0 opacity-100;
+    }
+}
+
+.category-vocal .card-title-icon { @apply bg-purple-500/20 text-purple-400; }
+.category-instrumental .card-title-icon { @apply bg-green-500/20 text-green-400; }
+.category-ambience .card-title-icon { @apply bg-blue-500/20 text-blue-400; }
+.category-production .card-title-icon { @apply bg-yellow-400/20 text-yellow-400; }
