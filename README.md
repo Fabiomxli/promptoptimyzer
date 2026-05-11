@@ -1,20 +1,50 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Suno Prompt Optimyzer by DJ H Salcido
 
-# Run and deploy your AI Studio app
+Professional tool for optimizing Suno v5.5 prompts with technical FX injection and character limit maximization.
 
-This contains everything you need to run your app locally.
+## Local Installation
 
-View your app in AI Studio: https://ai.studio/apps/613c21e4-d00a-49c7-bffa-16659eb1f04a
+To run this application on your own machine (outside of AI Studio), follow these steps:
 
-## Run Locally
+1. **Clone the repository** (or download the source code).
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+3. **Configure Environment Variables**:
+   Create a `.env` file in the root directory (you can copy `.env.example`):
+   ```bash
+   cp .env.example .env
+   ```
+   Edit `.env` and provide your values:
+   - `GEMINI_API_KEY`: Your Google Gemini API Key.
+   - `PORT`: Set this to `3151` (or any port you prefer).
+   - `NODE_ENV`: Set to `development` or `production`.
 
-**Prerequisites:**  Node.js
+4. **Run the Development Server**:
+   ```bash
+   npm run dev
+   ```
+   The application will be available at `http://localhost:3151`.
 
+## Features
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- **Smart Optimize**: Powered by Gemini AI to transform simple descriptions into high-fidelity Suno prompts.
+- **Style Console**: Technical FX injection (Mastering, Texture, Spatial, etc.) specifically tuned for Suno v5.5.
+- **Script Builder**: Easy tagging for vocals, atmosphere, and instrumentation.
+- **Auto-Inflation**: Automatically optimizes length to hit the 1000/5000 character sweet spots for better AI results.
+- **Live Preview**: Real-time visualization of the final prompt buffer.
+
+## Deployment
+
+To build the application for production:
+
+```bash
+npm run build
+npm start
+```
+
+## Credits
+
+Developed by **DJ H Salcido**.
+Powered by Suno v5.5 Prompt Engineering logic.
