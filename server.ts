@@ -2,6 +2,9 @@ import express from "express";
 import { createServer as createViteServer } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -9,9 +12,8 @@ const __dirname = path.dirname(__filename);
 async function startServer() {
   const app = express();
   
-  // Use port from environment or default to 3000 for AI Studio compatibility
-  // Note: Port MUST be 3000 to work in AI Studio preview.
-  const PORT = process.env.PORT || 3000;
+  // Force port 3051 as ordered
+  const PORT = 3051;
 
   // Example API route
   app.get("/api/status", (req, res) => {
@@ -21,7 +23,10 @@ async function startServer() {
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: { 
+        middlewareMode: true,
+        server: { port: 3051 }
+      },
       appType: "spa",
     });
     app.use(vite.middlewares);
@@ -35,10 +40,7 @@ async function startServer() {
   }
 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-    if (PORT !== "3000") {
-      console.warn(`Warning: AI Studio preview only works on port 3000. Current port: ${PORT}`);
-    }
+    console.log(`Server running on http://localhost:${PORT} (HARDCODED)`);
   });
 }
 
